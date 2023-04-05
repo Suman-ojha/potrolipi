@@ -22,6 +22,8 @@ const Login = () => {
 
   const handleSubmit = () => {
     console.log( email, password);
+    setEmail(null);
+    setPassword(null)
   };
 
   return (
@@ -30,9 +32,7 @@ const Login = () => {
        
        
         <div className="email">
-          <label className="form__label" for="email">
-            Email{" "}
-          </label>
+          
           <input
             type="email"
             id="email"
@@ -43,9 +43,7 @@ const Login = () => {
           />
         </div>
         <div className="password">
-          <label className="form__label" for="password">
-            Password{" "}
-          </label>
+         
           <input
             className="form__input"
             type="password"
@@ -59,7 +57,7 @@ const Login = () => {
       </div>
       <div class="footer">
         <button onClick={() => handleSubmit()} type="submit" class="btn">
-          Register
+          Login
         </button>
       </div>
     </div>
