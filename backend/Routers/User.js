@@ -5,7 +5,7 @@ const {getRegistrationData,UserLogin, verifyToken, UserDetails} =require('../con
 // router.route('/register').get(getRegistrationData);
 router.post('/register',getRegistrationData)
 router.post('/login',UserLogin)
-router.get("/user",verifyToken,UserDetails);
+router.get("/user",verifyToken ,UserDetails);
  
 
 
