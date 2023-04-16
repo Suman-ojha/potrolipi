@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-
-import '../styles/register.css'
+import "../styles/register.css";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const [firstName, setFirstName] = useState(null);
-  const [lastName, setLastName] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [confirmPassword, setConfirmPassword] = useState(null);
+  const history = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -27,17 +28,52 @@ const Register = () => {
       setConfirmPassword(value);
     }
   };
+  const sendRequest = async (e) => {
+    e.preventDefault();
+    const data = {
+      firstName,
+      lastName,
+      email,
+      password,
+      cpassword: confirmPassword,
+    };
 
-  const handleSubmit = () => {
-    console.log(firstName, lastName, email, password, confirmPassword);
-    setFirstName('');
+    try {
+      const res = await fetch("http://localhost:5000/register", {
+        method: "POST",
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omitPF
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'applic
+        },
+        body: JSON.stringify(data),
+      });
+      const conRes = await res.json();
+      if (res.status !== 200) throw new Error(conRes);
+      normal();
+      console.log(conRes);
+      history('/login');
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const normal = () => {
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+  };
+  
+
 
   return (
     <div className="form">
       <div className="form-body">
         <div className="username">
-         
           <input
             className="form__input"
             type="text"
@@ -48,7 +84,6 @@ const Register = () => {
           />
         </div>
         <div className="lastname">
-         
           <input
             type="text"
             name=""
@@ -60,7 +95,6 @@ const Register = () => {
           />
         </div>
         <div className="email">
-         
           <input
             type="email"
             id="email"
@@ -71,7 +105,6 @@ const Register = () => {
           />
         </div>
         <div className="password">
-         
           <input
             className="form__input"
             type="password"
@@ -82,7 +115,6 @@ const Register = () => {
           />
         </div>
         <div className="confirm-password">
-          
           <input
             className="form__input"
             type="password"
@@ -93,8 +125,8 @@ const Register = () => {
           />
         </div>
       </div>
-      <div class="footer">
-        <button onClick={() => handleSubmit()} type="submit" class="btn">
+      <div className="footer">
+        <button onClick={sendRequest} type="submit" className="btn">
           Register
         </button>
       </div>

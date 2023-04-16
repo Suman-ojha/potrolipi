@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Login from "./Login";
 import Register from "./Register";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Row, Col, Button, Tabs, Tab } from "react-bootstrap";
 const MyModal = (props) => {
-  const [key, setKey] = useState("login");
+  // const [activeTab, setActiveTab] = useState("signup");
+
+ 
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
@@ -15,12 +17,25 @@ const MyModal = (props) => {
       </Modal.Header>
       <Modal.Body className="show-grid">
         <Container>
-          <Tabs activeKey={key} onSelect={(k) => setKey(k)} className="mb-3">
-            <Tab link="/login" LinkComponent={Link} eventKey="login" title="login">
-                <Login/>
+          <Tabs
+            // defaultActiveKey="login"
+            // onSelect={(e)=>setActiveTab(e.target.value)}
+            // value={activeTab}
+            className="mb-3"
+          >
+            <Tab
+             
+              eventKey="login"
+              title="Login"
+            >
+              <Login />
             </Tab>
-            <Tab link="/register" LinkComponent={Link} eventKey="signup" title="signup">
-                <Register/>
+            <Tab
+            
+              eventKey="signup"
+              title="Register"
+            >
+              <Register />
             </Tab>
           </Tabs>
         </Container>
