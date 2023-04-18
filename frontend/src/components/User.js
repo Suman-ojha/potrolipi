@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 // import axios from 'axios'
 // axios.defaults.withCredentials=true
 const User = () => {
@@ -19,20 +19,31 @@ const User = () => {
     const data = await res.json(); // wait for the Promise to resolve
     return data;
   };
-  
+
   useEffect(() => {
     sendRequest().then((data) => {
       setUser(data.user);
     });
   }, []);
 
-  
   return (
-    <div>
-      {user && <h1> Welcome {user.firstName} to potrolipi.</h1>}
-      <p>users..</p>
-    </div>
-  )
-}
+    <>
+    <div className="box">
+      <div className="header">
+        {user && (
+          <h1>
+            Welcome {user.firstName} {user.lastName} to potrolipi.
+          </h1>
+        )}
+      </div>
+      
+        <div className="search_bar">
+          <input type="text" className="search-input" />
+          <button className="btn">Search</button>
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default User
+export default User;
