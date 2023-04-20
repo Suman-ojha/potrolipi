@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/register.css";
 import { useNavigate } from "react-router-dom";
-
+import toast from 'react-hot-toast';
 const Register = () => {
   const history = useNavigate();
   const [firstName, setFirstName] = useState("");
@@ -51,6 +51,7 @@ const Register = () => {
         body: JSON.stringify(data),
       });
       const conRes = await res.json();
+      toast.success("Registed Successfully!.")
       if (res.status !== 200) throw new Error(conRes);
       normal();
       console.log(conRes);
@@ -83,6 +84,8 @@ const Register = () => {
             placeholder="First Name"
           />
         </div>
+        {}
+        {/* <p className="text-danger"> {inputsError.email}</p> */}
         <div className="lastname">
           <input
             type="text"
@@ -94,6 +97,8 @@ const Register = () => {
             placeholder="LastName"
           />
         </div>
+        {/* <p className="text-danger"> {inputsError.email}</p> */}
+        {}
         <div className="email">
           <input
             type="email"
@@ -104,6 +109,8 @@ const Register = () => {
             placeholder="Email"
           />
         </div>
+        {}
+        {/* <p className="text-danger"> {inputsError.email}</p> */}
         <div className="password">
           <input
             className="form__input"
@@ -114,6 +121,8 @@ const Register = () => {
             placeholder="Password"
           />
         </div>
+        {}
+        {/* <p className="text-danger"> {inputsError.email}</p> */}
         <div className="confirm-password">
           <input
             className="form__input"
@@ -124,6 +133,9 @@ const Register = () => {
             placeholder="Confirm Password"
           />
         </div>
+
+        {}
+        {/* <p className="text-danger"> {inputsError.email}</p> */}
       </div>
       <div className="footer">
         <button onClick={sendRequest} type="submit" className="btn">

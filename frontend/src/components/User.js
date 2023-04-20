@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Todos from "./Todos";
 // import axios from 'axios'
 // axios.defaults.withCredentials=true
 const User = () => {
@@ -56,15 +57,17 @@ const User = () => {
             Welcome {user.firstName} {user.lastName} to potrolipi.
           </h1>
           <p>{user.email}</p>
+          <Link to='/user/update'>Update</Link>
           </>
         )}
         <button className="btn" onClickCapture={handelLogout}>Logout</button>
       </div>
       
         <div className="search_bar">
-          <input type="text" className="search-input" />
-          <button className="btn">Search</button>
+          <input type="text" className="search-input mx-2" placeholder="title" />
+          <button className="btn">serach</button>
         </div>
+        <Todos/>
       </div>
     </>
   );
