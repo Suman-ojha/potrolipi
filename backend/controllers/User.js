@@ -1,7 +1,8 @@
 const User = require("../Models/User");
 
 const UserDetails = async (req, res) => {
-  const UserId = req.id;
+
+  const UserId = req.user.userId;
   let user;
   try {
     user = await User.findById(UserId, "-password").select("firstName lastName email");
@@ -17,7 +18,7 @@ const UserDetails = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
-      req.id,
+      req.user.userId,
       {
         firstName: req.body.firstName,
         lastName:req.body.lastName,

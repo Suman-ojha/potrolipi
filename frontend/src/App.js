@@ -6,6 +6,7 @@ import User from "./components/User";
 // import ErrorPage from "./components/ErrorPage";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Updateuser from "./components/Updateuser"
 
 const App = () => {
   return (
@@ -18,6 +19,8 @@ const App = () => {
         <Route path="/register" element={<Register />} />
 
         <Route exact path="/user" element={<User />} />
+        <Route exact path="/user/update" element={<Updateuser />} />
+        
         {/* <Route exact path="*" element={<ErrorPage />} /> */}
       </Routes>
     </>

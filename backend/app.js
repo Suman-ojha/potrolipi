@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 // Mount the users router at the /users endpoint
 app.use('/',usersRouter)
-app.use('/todo',todosRouter);
+app.use('/todos',todosRouter);
 
 // app.get('/setcookie', (req, res) => {
 //     res.cookie(`Cookie token name`,`encrypted cookie string Value`);
